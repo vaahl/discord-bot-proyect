@@ -125,7 +125,7 @@ async def play_next(ctx):
         if ctx.voice_client and not ctx.voice_client.is_playing():
             await ctx.voice_client.disconnect()
 
-# EJECUCIÓN DEL BOT (NUNCA compartas el token en el código)
+# EJECUACIÓN DEL BOT
 bot.run(os.getenv('DISCORD_TOKEN'))
 
 # Intents del bot
