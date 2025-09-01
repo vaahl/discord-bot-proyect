@@ -115,6 +115,13 @@ async def play(ctx, *, search_query):
         await ctx.send(f"❌ Error al reproducir: {str(e)}")
 
 @bot.command()
+async def pause(ctx):
+    """Pausa la cancion"""
+    if ctx.voice_cliente and ctx.voice_client.is_playing():
+        ctx.voice_client.pause()
+        await ctx.send("⏸️ Canción pausada.")
+
+@bot.command()
 async def skip(ctx):
     """Salta la canción actual."""
     if ctx.voice_client and ctx.voice_client.is_playing():
@@ -122,13 +129,6 @@ async def skip(ctx):
         await ctx.send("⏭️ Acabas de saltar la canción.")
     else:
         await ctx.send("❌ No hay ninguna canción reproduciéndose.")
-
-@bot.command()
-async def pause(ctx):
-    """Pausa la cancion"""
-    if ctx.voice_cliente and ctx.voice_client.is_playing():
-        ctx.voice_client.pause()
-        await ctx.send("⏸️ Canción pausada.")
 
 async def play_next(ctx):
     """Reproduce la siguiente canción en la cola."""
