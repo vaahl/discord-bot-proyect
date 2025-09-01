@@ -62,6 +62,7 @@ async def le_sabe(ctx):
 async def hora(ctx):
     await ctx.send(f'La hora actual es: {datetime.now().strftime("%H:%M")}')
 
+
 @bot.command()
 async def play(ctx, *, search_query):
     #agrega audio desde yt
@@ -113,6 +114,22 @@ async def play(ctx, *, search_query):
     except Exception as e:
         await ctx.send(f"❌ Error al reproducir: {str(e)}")
 
+@bot.command()
+async def skip(ctx):
+    """Salta la canción actual."""
+    if ctx.voice_client and ctx.voice_client.is_playing():
+        ctx.voice_client.stop()
+        await ctx.send("⏭️ Acabas de saltar la canción.")
+    else:
+        await ctx.send("❌ No hay ninguna canción reproduciéndose.")
+
+@bot.command()
+async def pause(ctx):
+    """Pausa la cancion"""
+    if ctx.voice_cliente and ctx.voice_client.is_playing():
+        ctx.voice_client.pause()
+        await ctx.send("⏸️ Canción pausada.")
+
 async def play_next(ctx):
     """Reproduce la siguiente canción en la cola."""
     if ctx.guild.id in queues and queues[ctx.guild.id]:
@@ -125,7 +142,8 @@ async def play_next(ctx):
         if ctx.voice_client and not ctx.voice_client.is_playing():
             await ctx.voice_client.disconnect()
 
-# EJECUACIÓN DEL BOT
+
+# EJECUCIÓN DEL BOT
 bot.run(os.getenv('DISCORD_TOKEN'))
 
 # Intents del bot

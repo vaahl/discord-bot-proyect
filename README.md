@@ -8,7 +8,7 @@ funcionalidad de establecer conversacion con el muy basica.
 - Reproduccion de musica desde YouTube
 - Sistema de Colas
 - Respuestas genericas a comandos especificos
-- Comandos: "$play" , "$hola" , "$hora"
+- Comandos: "$play" , "$hola" , "$hora" , "$skip", "$pause"
 
 ## Instalacion 
 
